@@ -111,41 +111,70 @@ The user should be able to see the list of tasks, add new ones, delete existing 
         const input = document.getElementById("newTask");
         nodeLi.innerText = input.value;
         nodeLi.classList.add("task-list-item");
+
+        /* EXERCISE 10:
+              Attach an eventListener to each new task you create. When the task receives the click it should be removed (only the clicked task should disappear)*/
+        //WIP: Watch explanation
+        newLi.style.cursor = "url('./trash.cur'), auto"; // nice way for changing the cursor to a trash icon
+
+        newLi.addEventListener("click", function (event) {
+          event.target.remove();
+          console.log("clicked");
+        });
       };
 
       /* EXERCISE 6:
                       Create a function "removeLast" which removes the last item from the task list
                   */
       // WIP: Trying different things
-      const nodeLi = document.querySelectorAll("li");
-      const removeLast = function () {
-        for (liLoop of nodeLi) {
-          const lastLi = liLoop.pop();
-        }
-      };
-
+      // const nodeLi = document.querySelectorAll("li");
+      // const removeLast = function () {
+      //   for (liLoop of nodeLi) {
+      //     const lastLi = liLoop.pop();
+      //   }
+      // };
+      //Different approach
+      function removeLast() {
+        nodeUl.children[nodeUl.children.length - 1].remove();
+      }
       /* EXERCISE 7:
                       Create a function "removeFirst" which removes the first item from the task list
                   */
       // WIP: Trying different things (Opposite of the exercise 6)
-      const removeFirst = function () {
-        for (liLoop of nodeLi) {
-          const firstLi = liLoop.shift();
-        }
-      };
+      // const removeFirst = function () {
+      //   for (liLoop of nodeLi) {
+      //     const firstLi = liLoop.shift();
+      //   }
+      // };
+      //Different approach
+      function removeFirst() {
+        nodeUl.children[0].remove();
+      }
       /* EXERCISE 8:
                      Create a function "getTasksAsArray" which returns, and prints to the console an array containing the tasks as strings
                   */
+      // WIP: Check why is not working
       const getTasksAsArray = function () {
+        arrayOfLis = [];
         for (liLoop of nodeLi) {
-          return liloop;
+          arrayOfLis.push(liLoop);
         }
+        return arrayOfLis;
+        console.log(arrayOfLis);
       };
       /* EXERCISE 9:
                      Create a function "changeTaskBackgroundColor" and attach it to the "Change task background" button via JavaScript (not via html attribute)
                      Take the color from the color picker ad apply it as background to every list item
             */
+      const colorPicker = document.querySelector("#colorPicker"); //modern approach with querySelector?
+      function changeTaskBackgroundColor() {
+        console.log(colorPicker.value);
 
+        for (let nodeUl of nodeUl.children) {
+          console.log(nodeUl);
+          nodeUl.style.backgroundColor = colorPicker.value;
+        }
+      }
       /* ### EXTRA ### */
 
       /* EXERCISE 10:
